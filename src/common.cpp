@@ -254,6 +254,7 @@ std::string file_dialog(const std::vector<std::pair<std::string, std::string>> &
     return std::string(ofn.lpstrFile);
 #else
     char buffer[FILE_DIALOG_MAX_BUFFER];
+    buffer[0] = '\0';
     std::string cmd = "/usr/bin/zenity --file-selection ";
     if (save)
         cmd += "--save ";
