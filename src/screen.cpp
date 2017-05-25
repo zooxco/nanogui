@@ -319,8 +319,11 @@ void Screen::initialize(GLFWwindow *window, bool shutdownGLFWOnDestruct) {
 
     /* Detect framebuffer properties and set up compatible NanoVG context */
     GLint nStencilBits = 0, nSamples = 0;
+
+#if !defined(NANOVG_GL2_IMPLEMENTATION) && !defined(NANOVG_GLES2_IMPLEMENTATION)
     glGetFramebufferAttachmentParameteriv(GL_DRAW_FRAMEBUFFER,
         GL_STENCIL, GL_FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE, &nStencilBits);
+#endif
     glGetIntegerv(GL_SAMPLES, &nSamples);
 
     int flags = 0;
